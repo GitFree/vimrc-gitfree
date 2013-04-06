@@ -6,6 +6,13 @@ imap <c-s> <Esc>:w<cr>a
 "leader
 let mapleader="'"
 
+""检测操作系统
+if(has("win32") || has("win95") || has("win64") || has("win16"))
+  let g:iswindows=1
+else
+  let g:iswindows=0
+endif  
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "F1-F10快捷键绑定
 "<F2>PyLintAuto： 以pep8格式化当前python源码
@@ -28,13 +35,6 @@ map <F3> :w<CR>:!svn ci -m ""<LEFT>
 
 "<F4> 添加头部作者等信息
 nmap <F4> :AuthorInfoDetect<cr>
-
-""检测操作系统
-if(has("win32") || has("win95") || has("win64") || has("win16"))
-  let g:iswindows=1
-else
-  let g:iswindows=0
-endif  
 
 "单个文件编译并执行
 map <F5> :call Do_OneFileMake()<CR>

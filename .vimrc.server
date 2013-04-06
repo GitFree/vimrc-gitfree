@@ -7,6 +7,13 @@ imap <c-s> <Esc>:w<cr>a
 "leader
 let mapleader="'"
 
+"detect os
+if(has("win32") || has("win95") || has("win64") || has("win16"))
+  let g:iswindows=1
+else
+  let g:iswindows=0
+endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 外观设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
