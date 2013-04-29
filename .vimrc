@@ -432,6 +432,9 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
+"dont pop scratch windows
+set completeopt-=preview
+
 """""""""""""""""""""""""""""""""""""""""
 ""Neosnippet自动补全
 """""""""""""""""""""""""""""""""""""""""
@@ -460,6 +463,13 @@ let g:vimrc_email='pengzhao.lh@gmail.com'
 """""""""""""""""""""""""""""""""""""""""
 " Load pylint code plugin
 let g:pymode_lint = 1
+let g:pymode_virtualenv = 1
+let g:pymode_doc = 1
+let g:pymode_lint_checker = "pyflakes,pep8"
+" ignore import * warning
+let g:pymode_lint_ignore = "W404"
+" ignore line too long error
+let g:pymode_lint_ignore = "E501"
 let g:pymode_folding = 0
 
 " Load rope plugin
