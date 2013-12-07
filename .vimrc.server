@@ -5,7 +5,7 @@ map <c-s> :w<cr>
 imap <c-s> <Esc>:w<cr>a
 
 "leader
-let mapleader="'"
+let mapleader="\\"
 
 "detect os
 if(has("win32") || has("win95") || has("win64") || has("win16"))
@@ -74,14 +74,13 @@ function! MaximizeWindow()
 silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 endfunction
 
-" 状态行颜色
-"highlight StatusLine guifg=SlateBlue guibg=Yellow
-"highlight StatusLineNC guifg=Gray guibg=White
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 不要备份文件（根据自己需要取舍）
-"set nobackup
+set fileformat=unix
+
+" 不要备份文件
+set nobackup
 
 " 不要生成swap文件，当buffer被丢弃的时候隐藏它
 setlocal noswapfile
@@ -178,6 +177,16 @@ set wrap
 
 " 在行和段开始处使用制表符
 set smarttab
+
+
+" auto remove trailing whitespace
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CTags的设定

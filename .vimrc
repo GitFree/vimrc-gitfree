@@ -1,12 +1,11 @@
-
 "ctrl+s save
 map <c-s> :w<cr>
 imap <c-s> <Esc>:w<cr>a
 
 "leader
-let mapleader="'"
+let mapleader="\\"
 
-""检测操作系统
+"detect os
 if(has("win32") || has("win95") || has("win64") || has("win16"))
   let g:iswindows=1
 else
@@ -21,20 +20,30 @@ endif
 "<F5>单个文件编译并执行
 "<F6>make,ctrl+F6 清理make
 "<F7>gdb调试
-"<F8>
+"<F8>自动使用autopep8格式化当前文件
 "<F9>
 "<F10>无须重启即使vimrc配置生效
 "<F11>添加helptags帮助文档
 "<F12>generate ctags for current folder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"<F2>在svn提交当前编辑文件，不带注释
-map <F2> :PyLintAuto<CR>:w<CR>
+"<F2>以pep8格式化当前python源码
+"map <F2> :PyLintAuto<CR>:w<CR>
 
 "<F3>在svn提交当前文件夹，并可添加注释
 map <F3> :w<CR>:!svn ci -m ""<LEFT>
 
 "<F4> 添加头部作者等信息
-nmap <F4> :AuthorInfoDetect<cr>
+nmap <F4> :call SmartAddHeader()<cr>
+function! SmartAddHeader()
+    if &filetype=="python"
+        normal gg
+        normal O
+        normal O
+        call setline(1, "#!/usr/bin/env python")
+        call append(1, "# -*- coding: utf-8 -*-")
+        normal 3j
+    endif
+endf
 
 "单个文件编译并执行
 map <F5> :call Do_OneFileMake()<CR>
@@ -133,6 +142,13 @@ map <F11> :helptags ~/.vim/doc<cr>
 " map F12 to generate ctags for current folder:
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Other shortcuts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap zl :buffers<CR>
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 外观设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -209,14 +225,13 @@ function! MaximizeWindow()
 silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 endfunction
 
-" 状态行颜色
-"highlight StatusLine guifg=SlateBlue guibg=Yellow
-"highlight StatusLineNC guifg=Gray guibg=White
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 不要备份文件（根据自己需要取舍）
-"set nobackup
+set fileformat=unix
+
+" 不要备份文件
+set nobackup
 
 " 不要生成swap文件，当buffer被丢弃的时候隐藏它
 setlocal noswapfile
@@ -282,11 +297,8 @@ set scrolloff=3
 set novisualbell
 
 " 我的状态行显示的内容（包括文件类型和解码）
-"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
-set statusline=\ %F%r%h%w\ %=\ [光标:%l行,%v列,%p%%]\ \ [类型:%Y]\ \  
+set statusline=\ %F%m%r%h%w\ %=\ [光标:%l行,%v列,%p%%]\ [%{&ff}\ %{&fenc!=''?&fenc:&enc}]\ \ [类型:%Y]\ \  
 
-" 总是显示状态行
-set laststatus=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文本格式和排版
@@ -313,6 +325,16 @@ set wrap
 
 " 在行和段开始处使用制表符
 set smarttab
+
+
+" auto remove trailing whitespace
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CTags的设定
@@ -377,9 +399,7 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 """"“”“”“”“”“”“”“”“插件开始”“”“”“”“”“”“”“”“”“”“”“”“”“”""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   ctag
-""""“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”"""""
 " add current directory's generated tags file to available tags
 set tags+=./tags
 
@@ -388,15 +408,12 @@ let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只�
 let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
 
 " pathogen
-call pathogen#infect()
-call pathogen#helptags()
+"call pathogen#infect()
+"call pathogen#helptags()
 
 ""winManager
-let g:winManagerWindowLayout='FileExplorer'
-nmap wm :WMToggle<cr>
-
-" Syntastic
-let g:syntastic_python_checker_args='--ignore=c0111'
+"let g:winManagerWindowLayout='FileExplorer'
+"nmap wm :WMToggle<cr>
 
 " zencoding
 let g:user_zen_expandabbr_key = '<c-e>'
@@ -404,41 +421,9 @@ let g:use_zen_complete_tag = 1
 
 
 """""""""""""""""""""""""""""""""""""""""
-""neocomplcache自动补全
-"""""""""""""""""""""""""""""""""""""""""
-" Disable AutoComplPop. Comment out this line if AutoComplPop is not installed.
-"let g:acp_enableAtStartup = 0
-" Launches neocomplcache automatically on vim startup.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underscore completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Sets minimum char length of syntax keyword.
-let g:neocomplcache_min_syntax_length = 3
-" buffer file name pattern that locks neocomplcache. e.g. ku.vim or fuzzyfinder 
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-"dont pop scratch windows
-set completeopt-=preview
-
-"""""""""""""""""""""""""""""""""""""""""
 ""Neosnippet自动补全
 """""""""""""""""""""""""""""""""""""""""
-" Plugin key-mappings.
+"Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 
@@ -459,23 +444,141 @@ let g:vimrc_email='pengzhao.lh@gmail.com'
 
 
 """""""""""""""""""""""""""""""""""""""""
-""python-mode
-"""""""""""""""""""""""""""""""""""""""""
-" Load pylint code plugin
-let g:pymode_lint = 1
-let g:pymode_virtualenv = 1
-let g:pymode_doc = 1
-let g:pymode_lint_checker = "pyflakes,pep8"
-" ignore import * warning
-let g:pymode_lint_ignore = "W404"
-" ignore line too long error
-let g:pymode_lint_ignore = "E501"
-let g:pymode_folding = 0
-
-" Load rope plugin
-let g:pymode_rope = 0
-
-"""""""""""""""""""""""""""""""""""""""""
 ""markdown
 """""""""""""""""""""""""""""""""""""""""
 let g:vim_markdown_folding_disabled=1
+
+
+"""""""""""""""""""""""""""""""""""""""""
+""Visual-Mark.vim
+"""""""""""""""""""""""""""""""""""""""""
+let g:mwAutoLoadMarks = 1
+nmap <S-F8> <Leader>m
+nmap <S-C-F8> <Plug>MarkAllClear
+
+
+"""""""""""""""""""""""""""""""""""""""""
+""syntastic
+"""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_python_flake8_args="--ignore=E501"
+
+"""""""""""""""""""""""""""""""""""""""""
+""neocomplcache
+"""""""""""""""""""""""""""""""""""""""""
+" Disable AutoComplPop. Comment out this line if AutoComplPop is not installed.
+"let g:acp_enableAtStartup = 0
+" Launches neocomplcache automatically on vim startup.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underscore completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Sets minimum char length of syntax keyword.
+let g:neocomplcache_min_syntax_length = 3
+" select first candidate auto
+let g:neocomplcache_enable_auto_select = 0 
+" buffer file name pattern that locks neocomplcache. e.g. ku.vim or fuzzyfinder 
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+" disable docstrings popup
+set completeopt-=preview
+
+
+"""""""""""""""""""""""""""""""""""""""""
+""jedi-vim
+"""""""""""""""""""""""""""""""""""""""""
+" If you are a person who likes to use VIM-buffers not tabs
+let g:jedi#use_tabs_not_buffers = 0
+" disable docstrings popup
+autocmd FileType python setlocal completeopt-=preview
+
+" use neocomplcache with jedi-vim
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#auto_vim_configuration = 0
+if !exists('g:neocomplcache_force_omni_patterns')
+    let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+
+
+"""""""""""""""""""""""""""""""""""""""""
+""air-line
+"""""""""""""""""""""""""""""""""""""""""
+set laststatus=2
+set t_Co=256
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_powerline_fonts = 1
+
+" configure whether buffer numbers should be shown.
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" configure the formatting of filenames (see |filename-modifiers|)
+let g:airline#extensions#tabline#fnamemod = ':p:t'
+
+"""""""""""""""""""""""""""""""""""""""""
+""Fuzzyfinder
+"""""""""""""""""""""""""""""""""""""""""
+nmap zf :FufFile<CR>
+nmap zb :FufBuffer<CR>
+
+"""""""""""""""""""""""""""""""""""""""""
+""json-vim
+"""""""""""""""""""""""""""""""""""""""""
+let g:vim_json_syntax_conceal = 0
+
+"""""""""""""""""""""""""""""""""""""""""
+""vim-autopep8
+"""""""""""""""""""""""""""""""""""""""""
+let g:autopep8_disable_show_diff=1
+let g:autopep8_max_line_length=100
+
+
+"""""""""""""""""""""""""""""""""""""""""
+""vundle
+"""""""""""""""""""""""""""""""""""""""""
+set nocompatible      " be iMproved
+filetype off          " required!
+
+set rtp+=$VIM/vimfiles/bundle/vundle/
+call vundle#rc('$VIM/vimfiles/bundle/')
+
+" let Vundle manage Vundle required! 
+Bundle 'gmarik/vundle'
+
+" original repos on github
+Bundle 'bling/vim-airline'
+Bundle 'vim-scripts/Visual-Mark'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'Shougo/neocomplcache.vim'
+Bundle 'Shougo/neosnippet'
+Bundle 'scrooloose/snipmate-snippets'
+Bundle 'scrooloose/syntastic'
+Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'hynek/vim-python-pep8-indent'
+Bundle 'tell-k/vim-autopep8'
+Bundle 'elzr/vim-json'
+
+" vim-scripts repos
+Bundle 'L9'
+" non github repos
+" git repos on your local machine (ie. when working on your own plugin)
+filetype plugin indent on     " required!
