@@ -138,6 +138,7 @@ map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other shortcuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" show buffers
 nmap zl :buffers<CR>
 
 "ctrl+s save
@@ -149,7 +150,7 @@ imap <c-s> <Esc>:w<cr>a
 " 外观设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " startup windows size
-set lines=30 columns=108
+set lines=50 columns=108
 
 " syntax
 syntax enable
@@ -161,7 +162,8 @@ colorscheme torte
 " font
 if g:iswindows 
     set linespace=1
-    set guifont=Lucida_Console:h12
+    set guifont=Lucida\ Console:h13
+    "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 else 
     set guifont=Monaco\ for\ Powerline:h16
 endif
@@ -189,10 +191,6 @@ set history=100
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
 
-" 与windows共享剪贴板
-"set clipboard+=unnamed
-
-
 " 为特定文件类型载入相关缩进文件
 filetype indent on
 " 保存全局变量
@@ -201,9 +199,7 @@ set viminfo+=!
 " 带有如下符号的单词不要被换行分割
 set iskeyword+=_,$,@,%,#,-
 
-" 高亮字符，让其不受100列限制
-:highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
-:match OverLength '\%101v.*'
+set colorcolumn=100
 
 ""启动后最大化gVim
 "if has('win32')
@@ -248,7 +244,7 @@ set whichwrap+=<,>,h,l
 " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
 set mouse=a
 set selection=exclusive
-set selectmode=mouse,key
+set selectmode=key
 
 " 启动的时候不显示那个援助索马里儿童的提示
 set shortmess=atI
@@ -339,7 +335,7 @@ autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby set 
 autocmd FileType xml,html vmap <C-o> <ESC>'<i<!--<ESC>o<ESC>'>o-->
 autocmd FileType java,c,cpp,cs vmap <C-o> <ESC>'<o/*<ESC>'>o*/
 "设置自动断行
-autocmd FileType html,text,php,vim,c,java,xml,bash,shell,perl,python setlocal textwidth=100
+"autocmd FileType html,text,php,vim,c,java,xml,bash,shell,perl,python setlocal textwidth=100
 "autocmd Filetype html,xml,xsl source $VIMRUNTIME/plugin/closetag.vim
 autocmd BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -364,28 +360,33 @@ au BufReadPost *.nfo call RestoreFileEncodings()
 " 用空格键来开关折叠
 set foldenable
 set foldmethod=manual
+autocmd FileType python setlocal foldmethod=indent
+set foldlevel=99
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
+
 """"“”“”“”“”“”“”“”“插件开始”“”“”“”“”“”“”“”“”“”“”“”“”“”""""""""""""
-"   ctag
+
+"""""""""""""""""""""""""""""""""""""""""
+""ctag
 " add current directory's generated tags file to available tags
 set tags+=./tags
+"""""""""""""""""""""""""""""""""""""""""
 
-" Taglist 
+"""""""""""""""""""""""""""""""""""""""""
+""Taglist 
 let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
 let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
+"""""""""""""""""""""""""""""""""""""""""
 
-""winManager
-"let g:winManagerWindowLayout='FileExplorer'
-"nmap wm :WMToggle<cr>
-
-" zencoding
+"""""""""""""""""""""""""""""""""""""""""
+""zencoding
 let g:user_zen_expandabbr_key = '<c-e>'
 let g:use_zen_complete_tag = 1
+"""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""Neosnippet自动补全
-"""""""""""""""""""""""""""""""""""""""""
 "Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -393,8 +394,8 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-let g:neosnippet#snippets_directory="~/.vim/bundle/snipmate-snippets/snippets"
-let g:neosnippet#enable_snipmate_compatibility=1
+let g:neosnippet#snippets_directory="$VIM/vimfiles/bundle/vim-snippets/snippets"
+"let g:neosnippet#enable_snipmate_compatibility=1
 let g:snips_author='GitFree'
 
 " For snippet_complete marker.
@@ -402,29 +403,29 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-let g:vimrc_author='GitFree' 
-let g:vimrc_email='pengzhao.lh@gmail.com' 
+let g:vimrc_author='GitFree'
+let g:vimrc_email='pengzhao.lh@gmail.com'
+"""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""markdown
-"""""""""""""""""""""""""""""""""""""""""
 let g:vim_markdown_folding_disabled=1
+"""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""Visual-Mark.vim
-"""""""""""""""""""""""""""""""""""""""""
 let g:mwAutoLoadMarks = 1
 nmap <S-F8> <Leader>m
 nmap <S-C-F8> <Plug>MarkAllClear
+"""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""syntastic
-"""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_python_flake8_args="--ignore=E501"
+"""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""neocomplcache
-"""""""""""""""""""""""""""""""""""""""""
 " Disable AutoComplPop. Comment out this line if AutoComplPop is not installed.
 "let g:acp_enableAtStartup = 0
 " Launches neocomplcache automatically on vim startup.
@@ -455,10 +456,10 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " disable docstrings popup
 set completeopt-=preview
+"""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""jedi-vim
-"""""""""""""""""""""""""""""""""""""""""
 " If you are a person who likes to use VIM-buffers not tabs
 let g:jedi#use_tabs_not_buffers = 0
 " disable docstrings popup
@@ -473,49 +474,54 @@ endif
 let g:neocomplcache_omni_patterns.python = '[^. \t]\.\w*'
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
+"""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""air-line
-"""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
 set t_Co=256
 
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
 
 " configure whether buffer numbers should be shown.
 let g:airline#extensions#tabline#buffer_nr_show = 1
 " configure the formatting of filenames (see |filename-modifiers|)
 let g:airline#extensions#tabline#fnamemod = ':p:t'
+"""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""Fuzzyfinder
-"""""""""""""""""""""""""""""""""""""""""
 nmap zf :FufFile<CR>
 nmap zb :FufBuffer<CR>
+"""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""json-vim
-"""""""""""""""""""""""""""""""""""""""""
 let g:vim_json_syntax_conceal = 0
+"""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""vim-autopep8
-"""""""""""""""""""""""""""""""""""""""""
 let g:autopep8_disable_show_diff=1
 let g:autopep8_max_line_length=100
+"""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""
+""vim-bookmarks
+let g:bookmark_sign = '>>'
+let g:bookmark_annotation_sign = '##'
+"""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""vundle
-"""""""""""""""""""""""""""""""""""""""""
 set nocompatible      " be iMproved
 filetype off          " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc('~/.vim/bundle/')
+set rtp+=$VIM/vimfiles/bundle/vundle/
+call vundle#rc('$VIM/vimfiles/bundle/')
 
 " let Vundle manage Vundle required! 
 Bundle 'gmarik/vundle'
@@ -527,13 +533,14 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Shougo/neocomplcache.vim'
 Bundle 'Shougo/neosnippet'
-Bundle 'scrooloose/snipmate-snippets'
+Bundle 'honza/vim-snippets'
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'hynek/vim-python-pep8-indent'
 Bundle 'tell-k/vim-autopep8'
 Bundle 'elzr/vim-json'
-Bundle 'dyng/ctrlsf.vim'
+Bundle 'MattesGroeger/vim-bookmarks'
+"Bundle 'dyng/ctrlsf.vim'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -541,3 +548,4 @@ Bundle 'Mark--Karkat'
 " non github repos
 " git repos on your local machine (ie. when working on your own plugin)
 filetype plugin indent on     " required!
+"""""""""""""""""""""""""""""""""""""""""
