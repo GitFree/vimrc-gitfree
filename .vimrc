@@ -8,6 +8,10 @@ else
   let g:iswindows=0
 endif  
 
+"设置环境变量
+if g:iswindows==0
+    let $VIM="$HOME/.vim/"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "F1-F10快捷键绑定
 "<F3>在svn提交当前文件夹，并可添加注释
@@ -520,13 +524,8 @@ let g:bookmark_annotation_sign = '##'
 set nocompatible      " be iMproved
 filetype off          " required!
 
-if(g:iswindows==1)
-    set rtp+=$VIM/vimfiles/bundle/vundle/
-    call vundle#rc('$VIM/vimfiles/bundle/')
-else
-    set rtp+=$HOME/.vim/bundle/vundle/
-    call vundle#rc('$HOME/.vim/bundle/')
-endif
+set rtp+=$VIM/vimfiles/bundle/vundle/
+call vundle#rc('$VIM/vimfiles/bundle/')
 
 " let Vundle manage Vundle required! 
 Bundle 'gmarik/vundle'
