@@ -150,7 +150,7 @@ imap <c-s> <Esc>:w<cr>a
 " 外观设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " startup windows size
-set lines=50 columns=108
+"set lines=50 columns=108
 
 " syntax
 syntax enable
