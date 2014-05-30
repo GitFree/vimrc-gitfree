@@ -520,8 +520,8 @@ let g:bookmark_annotation_sign = '##'
 set nocompatible      " be iMproved
 filetype off          " required!
 
-set rtp+=$VIM/vimfiles/bundle/vundle/
-call vundle#rc('$VIM/vimfiles/bundle/')
+set rtp+=$HOME/.vim/bundle/vundle/
+call vundle#rc('$HOME/.vim/bundle/')
 
 " let Vundle manage Vundle required! 
 Bundle 'gmarik/vundle'
