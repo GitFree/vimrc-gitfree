@@ -8,9 +8,6 @@ else
   let g:iswindows=0
 endif  
 
-"设置环境变量
-if g:iswindows==0
-    let $VIM="$HOME/.vim/"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "F1-F10快捷键绑定
@@ -398,7 +395,12 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-let g:neosnippet#snippets_directory="$VIM/vimfiles/bundle/vim-snippets/snippets"
+
+if g:iswindows==1
+    let g:neosnippet#snippets_directory="$VIM/vimfiles/bundle/vim-snippets/snippets"
+else
+    let g:neosnippet#snippets_directory="$HOME/.vim/vimfiles/bundle/vim-snippets/snippets"
+endif
 "let g:neosnippet#enable_snipmate_compatibility=1
 let g:snips_author='GitFree'
 
@@ -524,8 +526,13 @@ let g:bookmark_annotation_sign = '##'
 set nocompatible      " be iMproved
 filetype off          " required!
 
-set rtp+=$VIM/vimfiles/bundle/vundle/
-call vundle#rc('$VIM/vimfiles/bundle/')
+if g:iswindows==1
+    set rtp+=$VIM/vimfiles/bundle/vundle/
+    call vundle#rc('$VIM/vimfiles/bundle/')
+else
+    set rtp+=$HOME/.vim/vimfiles/bundle/vundle/
+    call vundle#rc('$HOME/.vim/vimfiles/bundle/')
+endif
 
 " let Vundle manage Vundle required! 
 Bundle 'gmarik/vundle'
