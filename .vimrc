@@ -23,7 +23,7 @@ endif
 "<F12>generate ctags for current folder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "<F3>在svn提交当前文件夹，并可添加注释
-map <F3> :w<CR>:!svn ci -m ""<LEFT>
+map <F3> :w<CR>:!svn ci % -m ""<LEFT>
 
 "<F4> 添加头部作者等信息
 nmap <F4> :call SmartAddHeader()<cr>
@@ -222,11 +222,11 @@ filetype plugin on
 
 set fileformat=unix
 
-" 不要备份文件
+" 不备份，不生成临时文件
 set nobackup
-
-" 不要生成swap文件，当buffer被丢弃的时候隐藏它
-setlocal noswapfile
+set nowritebackup
+set noswapfile
+" 当buffer被丢弃的时删除它
 set bufhidden=hide
 
 " 增强模式中的命令行自动完成操作
@@ -551,7 +551,8 @@ Bundle 'hynek/vim-python-pep8-indent'
 Bundle 'tell-k/vim-autopep8'
 Bundle 'elzr/vim-json'
 Bundle 'MattesGroeger/vim-bookmarks'
-"Bundle 'dyng/ctrlsf.vim'
+Bundle 'dyng/ctrlsf.vim'
+Bundle 'jmcantrell/vim-virtualenv'
 
 " vim-scripts repos
 Bundle 'L9'
