@@ -396,12 +396,19 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
+" -----------start use Honza's Snippets-----------
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#disable_runtime_snippets = {
+            \   '_' : 1,
+            \ }
 if g:iswindows==1
     let g:neosnippet#snippets_directory="$VIM/vimfiles/bundle/vim-snippets/snippets"
 else
     let g:neosnippet#snippets_directory="$HOME/.vim/vimfiles/bundle/vim-snippets/snippets"
 endif
-"let g:neosnippet#enable_snipmate_compatibility=1
+" -----------end use Honza's Snippets-----------
+
 let g:snips_author='GitFree'
 
 " For snippet_complete marker.
