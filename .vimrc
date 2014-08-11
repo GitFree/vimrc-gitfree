@@ -574,9 +574,10 @@ Bundle 'MattesGroeger/vim-bookmarks'
 Bundle 'dyng/ctrlsf.vim'
 Bundle 'jmcantrell/vim-virtualenv'
 
-" vim-scripts repos
+" vim-scripts repos on vim.org
 Bundle 'L9'
 Bundle 'Mark--Karkat'
+Bundle 'colorizer'
 " non github repos
 " git repos on your local machine (ie. when working on your own plugin)
 filetype plugin indent on     " required!
