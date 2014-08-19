@@ -127,6 +127,9 @@ exec "!gcc -g % -o %<"
 exec "!gdb %<"
 endfunc
 
+"<F8>  vim-autopep8
+autocmd FileType python map <buffer> <F8> :call Autopep8()<CR><C-l><CR>
+
 "<F10> 改变.vimrc后无须重启vi即生效
 map <F10> :w<cr>:so %<cr>
 
@@ -561,7 +564,6 @@ Bundle 'bling/vim-airline'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'davidhalter/jedi-vim'
-"Bundle 'Shougo/neocomplcache.vim'
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'Shougo/neosnippet'
 Bundle 'honza/vim-snippets'
