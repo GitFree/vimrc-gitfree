@@ -437,7 +437,7 @@ nmap <S-C-F8> <Plug>MarkAllClear
 
 """""""""""""""""""""""""""""""""""""""""
 ""syntastic
-let g:syntastic_python_flake8_args="--ignore=E501"
+let g:syntastic_python_flake8_args="--ignore=E501, E265"
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
@@ -575,6 +575,8 @@ Bundle 'elzr/vim-json'
 Bundle 'MattesGroeger/vim-bookmarks'
 Bundle 'dyng/ctrlsf.vim'
 Bundle 'jmcantrell/vim-virtualenv'
+" local config
+let g:virtualenv_auto_activate = 0
 
 " vim-scripts repos on vim.org
 Bundle 'L9'
