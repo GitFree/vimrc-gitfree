@@ -437,7 +437,7 @@ nmap <S-C-F8> <Plug>MarkAllClear
 
 """""""""""""""""""""""""""""""""""""""""
 ""syntastic
-let g:syntastic_python_flake8_args="--ignore=E501, E265"
+let g:syntastic_python_flake8_args="--ignore=E501,E265"
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
