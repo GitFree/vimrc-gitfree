@@ -17,7 +17,7 @@ endif
 "<F6>make,ctrl+F6 清理make
 "<F7>gdb调试
 "<F8>自动使用autopep8格式化当前文件
-"<F9>
+"<F9> toggle location list
 "<F10>无须重启即使vimrc配置生效
 "<F11>添加helptags帮助文档
 "<F12>generate ctags for current folder
@@ -38,7 +38,7 @@ function! SmartAddHeader()
     endif
 endf
 
-"单个文件编译并执行
+"<F5>单个文件编译并执行
 map <F5> :call Do_OneFileMake()<CR>
 function! Do_OneFileMake()
   exec "w"
@@ -129,6 +129,17 @@ endfunc
 
 "<F8>  vim-autopep8
 autocmd FileType python map <buffer> <F8> :call Autopep8()<CR><C-l><CR>
+
+"<F9>  toggle location list
+function! ToggleErrors()
+    let old_last_winnr = winnr('$')
+    lclose
+    if old_last_winnr == winnr('$')
+        " Nothing was closed, open syntastic error location panel
+        Errors
+    endif
+endfunction
+map <F9> :call ToggleErrors()<CR>
 
 "<F10> 改变.vimrc后无须重启vi即生效
 map <F10> :w<cr>:so %<cr>
