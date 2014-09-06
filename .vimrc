@@ -555,6 +555,11 @@ let g:bookmark_annotation_sign = '##'
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
+""vim-virtualenv
+let g:virtualenv_auto_activate = 1
+"""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""
 ""vundle
 set nocompatible      " be iMproved
 filetype off          " required!
@@ -585,9 +590,7 @@ Bundle 'tell-k/vim-autopep8'
 Bundle 'elzr/vim-json'
 Bundle 'MattesGroeger/vim-bookmarks'
 Bundle 'dyng/ctrlsf.vim'
-Bundle 'jmcantrell/vim-virtualenv'
-" local config
-let g:virtualenv_auto_activate = 0
+Bundle 'gitfree/vim-virtualenv'
 
 " vim-scripts repos on vim.org
 Bundle 'L9'
