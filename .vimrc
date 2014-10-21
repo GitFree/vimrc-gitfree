@@ -338,6 +338,10 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
+" vimdiff忽略行尾的空格(自然包括全空格的行)
+set diffopt+=iwhite
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocommands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
