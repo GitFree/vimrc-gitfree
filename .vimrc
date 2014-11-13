@@ -216,17 +216,6 @@ set iskeyword+=_,$,@,%,#,-
 
 set colorcolumn=100
 
-""启动后最大化gVim
-"if has('win32')
-"au GUIEnter * simalt ~x
-"else
-"au GUIEnter * call MaximizeWindow()
-"endif
-
-"function! MaximizeWindow()
-"silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
-"endfunction
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -301,7 +290,6 @@ set novisualbell
 
 " statusline
 "set statusline=\ %F%m%r%h%w\ %=\ [pos:%l:%v:%p%%]\ [%{&ff}\ %{&fenc!=''?&fenc:&enc}]\ \ [type:%Y]\ \  
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文本格式和排版
@@ -382,7 +370,6 @@ set foldmethod=manual
 autocmd FileType python setlocal foldmethod=indent
 set foldlevel=99
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-
 
 """"“”“”“”“”“”“”“”“插件开始”“”“”“”“”“”“”“”“”“”“”“”“”“”""""""""""""
 
@@ -604,3 +591,6 @@ Bundle 'colorizer'
 " git repos on your local machine (ie. when working on your own plugin)
 filetype plugin indent on     " required!
 """""""""""""""""""""""""""""""""""""""""
+
+" highlight 要放到airline后面, 否则被airline覆盖
+highlight WarningMsg term=standout ctermfg=5 guifg=Red
