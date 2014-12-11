@@ -308,27 +308,13 @@ set cindent
 "设置Tab
 set expandtab       " Use space to replace tab
 set shiftwidth=4    " Auto indent width
-"set tabstop=4    " Tab width,defalut is 8,do NOT change
-"set softtabstop=4   " Mix space and tab to keep the text display beautifully
+set smarttab
 
 " 自动折行显示(只是显示)
 set wrap
 
-" 在行和段开始处使用制表符
-set smarttab
-
-" auto remove trailing whitespace
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
 " vimdiff忽略行尾的空格(自然包括全空格的行)
 set diffopt+=iwhite
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocommands
@@ -371,7 +357,16 @@ autocmd FileType python setlocal foldmethod=indent
 set foldlevel=99
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
-""""“”“”“”“”“”“”“”“插件开始”“”“”“”“”“”“”“”“”“”“”“”“”“”""""""""""""
+" auto remove trailing whitespace
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+"autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+""""""""""""""""""""""插件开始""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""ctag
