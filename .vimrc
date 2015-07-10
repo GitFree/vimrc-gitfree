@@ -434,6 +434,7 @@ nmap <S-C-F8> <Plug>MarkAllClear
 
 """""""""""""""""""""""""""""""""""""""""
 ""syntastic
+let g:syntastic_python_checkers = ['flake8', 'pyflakes']
 let g:syntastic_python_flake8_args="--ignore=E501,E265,F403,E402"
 """""""""""""""""""""""""""""""""""""""""
 
