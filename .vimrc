@@ -547,6 +547,26 @@ let g:virtualenv_auto_activate = 1
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
+""nerdtree
+map <C-n> :NERDTreeToggle<CR>
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""
+""vim-easymotion
+map <Leader> <Plug>(easymotion-prefix)
+
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+"""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""
 ""vundle
 set nocompatible      " be iMproved
 filetype off          " required!
@@ -578,6 +598,10 @@ Bundle 'elzr/vim-json'
 Bundle 'MattesGroeger/vim-bookmarks'
 Bundle 'dyng/ctrlsf.vim'
 Bundle 'gitfree/vim-virtualenv'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-fugitive'
 
 " vim-scripts repos on vim.org
 Bundle 'L9'
