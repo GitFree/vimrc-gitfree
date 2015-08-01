@@ -607,6 +607,7 @@ Plugin 'tpope/vim-fugitive'
 Bundle 'L9'
 Bundle 'Mark--Karkat'
 Bundle 'colorizer'
+Bundle 'LargeFile'
 " non github repos
 " git repos on your local machine (ie. when working on your own plugin)
 filetype plugin indent on     " required!
