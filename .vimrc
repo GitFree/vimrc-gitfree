@@ -426,13 +426,6 @@ let g:vim_markdown_folding_disabled=1
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
-""Visual-Mark.vim
-let g:mwAutoLoadMarks = 1
-nmap <S-F8> <Leader>m
-nmap <S-C-F8> <Plug>MarkAllClear
-"""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""
 ""syntastic
 let g:syntastic_python_checkers = ['flake8', 'pyflakes']
 let g:syntastic_python_flake8_args="--ignore=E501,E265,F403,E402"
@@ -606,7 +599,6 @@ Plugin 'henrik/vim-indexed-search'
 
 " vim-scripts repos on vim.org
 Bundle 'L9'
-Bundle 'Mark--Karkat'
 Bundle 'colorizer'
 Bundle 'LargeFile'
 " non github repos
