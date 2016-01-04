@@ -602,6 +602,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-fugitive'
+Plugin 'henrik/vim-indexed-search'
 
 " vim-scripts repos on vim.org
 Bundle 'L9'
