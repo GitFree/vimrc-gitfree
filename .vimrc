@@ -32,8 +32,7 @@ function! SmartAddHeader()
         normal gg
         normal O
         normal O
-        call setline(1, "#!/usr/bin/env python")
-        call append(1, "# -*- coding: utf-8 -*-")
+        call setline(1, "# -*- coding: utf-8 -*-")
         normal 3j
     endif
 endf
