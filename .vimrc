@@ -524,7 +524,7 @@ let g:vim_json_syntax_conceal = 0
 """""""""""""""""""""""""""""""""""""""""
 ""vim-autopep8
 let g:autopep8_disable_show_diff=1
-let g:autopep8_max_line_length=100
+let g:autopep8_max_line_length=120
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
@@ -556,6 +556,11 @@ map <Leader>h <Plug>(easymotion-linebackward)
 
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+"""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""
+""PreserveNoEOL
+let g:PreserveNoEOL = 1
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
@@ -595,12 +600,14 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-fugitive'
 Plugin 'henrik/vim-indexed-search'
+Plugin 'editorconfig/editorconfig-vim'
 
 " vim-scripts repos on vim.org
 Bundle 'L9'
 Bundle 'colorizer'
 Bundle 'LargeFile'
-" non github repos
+Bundle 'PreserveNoEOL'
+
 " git repos on your local machine (ie. when working on your own plugin)
 filetype plugin indent on     " required!
 """""""""""""""""""""""""""""""""""""""""
