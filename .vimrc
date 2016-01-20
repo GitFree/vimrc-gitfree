@@ -390,17 +390,16 @@ let g:use_zen_complete_tag = 1
 "Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"Tab to select the next field to fill in the snippet.
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " -----------start use Honza's Snippets-----------
 " Enable snipMate compatibility feature.
+let g:neosnippet#disable_runtime_snippets = {'_': 1}
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#disable_runtime_snippets = {
-            \   '_' : 1,
-            \ }
 if g:iswindows==1
     let g:neosnippet#snippets_directory="$VIM/vimfiles/bundle/vim-snippets/snippets"
 else
@@ -485,12 +484,15 @@ autocmd FileType python setlocal completeopt-=preview
 
 " use neocomplcache with jedi-vim
 autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
-if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
+let g:jedi#smart_auto_mappings = 0
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.python = '[^. \t]\.\w*'
-let g:jedi#popup_on_dot = 0
+let g:neocomplete#force_omni_input_patterns.python =
+            \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+let g:jedi#popup_on_dot = 1
 let g:jedi#popup_select_first = 0
 """""""""""""""""""""""""""""""""""""""""
 
