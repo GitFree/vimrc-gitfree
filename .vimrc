@@ -177,7 +177,6 @@ colorscheme torte
 if g:iswindows 
     set linespace=1
     set guifont=Lucida\ Console:h13
-    "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 else 
     set guifont=Monaco\ for\ Powerline:h16
 endif
@@ -425,7 +424,7 @@ let g:vim_markdown_folding_disabled=1
 
 """""""""""""""""""""""""""""""""""""""""
 ""syntastic
-let g:syntastic_python_checkers = ['flake8', 'pyflakes']
+let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args="--ignore=E501,E265,F403,E402"
 """""""""""""""""""""""""""""""""""""""""
 
@@ -579,24 +578,24 @@ else
 endif
 
 " let Vundle manage Vundle required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " original repos on github
-Bundle 'bling/vim-airline'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'Shougo/neocomplete.vim'
-Bundle 'Shougo/neosnippet'
-Bundle 'honza/vim-snippets'
-Bundle 'scrooloose/syntastic'
-Bundle 'vim-scripts/FuzzyFinder'
-Bundle 'hynek/vim-python-pep8-indent'
-Bundle 'tell-k/vim-autopep8'
-Bundle 'elzr/vim-json'
-Bundle 'MattesGroeger/vim-bookmarks'
-Bundle 'dyng/ctrlsf.vim'
-Bundle 'gitfree/vim-virtualenv'
+Plugin 'bling/vim-airline'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neosnippet'
+Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/syntastic'
+Plugin 'vim-scripts/FuzzyFinder'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'tell-k/vim-autopep8'
+Plugin 'elzr/vim-json'
+Plugin 'MattesGroeger/vim-bookmarks'
+Plugin 'dyng/ctrlsf.vim'
+Plugin 'gitfree/vim-virtualenv'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'easymotion/vim-easymotion'
@@ -605,10 +604,10 @@ Plugin 'henrik/vim-indexed-search'
 Plugin 'editorconfig/editorconfig-vim'
 
 " vim-scripts repos on vim.org
-Bundle 'L9'
-Bundle 'colorizer'
-Bundle 'LargeFile'
-Bundle 'PreserveNoEOL'
+Plugin 'L9'
+Plugin 'colorizer'
+Plugin 'LargeFile'
+Plugin 'PreserveNoEOL'
 
 " git repos on your local machine (ie. when working on your own plugin)
 filetype plugin indent on     " required!
