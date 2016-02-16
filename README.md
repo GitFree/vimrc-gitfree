@@ -20,15 +20,15 @@ git clone https://github.com/VundleVim/Vundle.vim.git vundle
 启动vim，执行 :PluginInstall  
 
 #### 4. 安装依赖软件
-1. 字体（airline依赖）
-双击Monaco for Powerline.otf安装字体 
-设置iterm字体为 Monaco for Powerline
-2. jedi-vim依赖
-sudo pip install jedi
-3. syntastic依赖
-sudo pip install flake8
-brew install tidy-html5
-4. vim-autopep8依赖
-sudo pip install autopep8
-5. editorconfig-vim
-brew install editorconfig
+1. 字体（airline依赖）  
+双击Monaco for Powerline.otf安装字体   
+设置iterm字体为 Monaco for Powerline  
+2. jedi-vim依赖  
+sudo pip install jedi  
+3. syntastic依赖  
+sudo pip install flake8  
+brew install tidy-html5  
+4. vim-autopep8依赖  
+sudo pip install autopep8  
+5. editorconfig-vim  
+brew install editorconfig  
