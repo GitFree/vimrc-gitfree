@@ -418,14 +418,23 @@ let g:vimrc_email='pengzhao.lh@gmail.com'
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
-""markdown
+""vim-markdown
 let g:vim_markdown_folding_disabled=1
+""vim-instant-markdown
+let g:instant_markdown_slow = 1
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
 ""syntastic
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args="--ignore=E501,E265,F403,E402"
+let g:syntastic_html_tidy_ignore_errors = [
+            \  'plain text isn''t allowed in <head> elements',
+            \  '<base> escaping malformed URI reference',
+            \  'discarding unexpected <body>',
+            \  '<script> escaping malformed URI reference',
+            \  '</head> isn''t allowed in <body> elements'
+            \ ]
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
@@ -582,7 +591,9 @@ Plugin 'gmarik/vundle'
 
 " original repos on github
 Plugin 'bling/vim-airline'
+Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'suan/vim-instant-markdown'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'Shougo/neocomplete.vim'
