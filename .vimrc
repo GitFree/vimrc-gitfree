@@ -379,9 +379,12 @@ let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
-""zencoding
-let g:user_zen_expandabbr_key = '<c-e>'
-let g:use_zen_complete_tag = 1
+""emmet
+"Enable just for html/css/jsx
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,jsx EmmetInstall
+"enable all function in all mode.
+let g:user_emmet_mode='a'
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
@@ -574,6 +577,11 @@ let g:PreserveNoEOL = 1
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
+""vim-jsx
+let g:jsx_ext_required = 0
+"""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""
 ""vundle
 set nocompatible      " be iMproved
 filetype off          " required!
@@ -613,6 +621,9 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-fugitive'
 Plugin 'henrik/vim-indexed-search'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'mattn/emmet-vim'
 
 " vim-scripts repos on vim.org
 Plugin 'L9'
