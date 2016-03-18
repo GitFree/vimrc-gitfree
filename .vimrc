@@ -382,7 +382,7 @@ let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口
 ""emmet
 "Enable just for html/css/jsx
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,jsx EmmetInstall
+autocmd FileType html,htmldjango,css,jsx EmmetInstall
 "enable all function in all mode.
 let g:user_emmet_mode='a'
 """""""""""""""""""""""""""""""""""""""""
@@ -436,7 +436,8 @@ let g:syntastic_html_tidy_ignore_errors = [
             \  '<base> escaping malformed URI reference',
             \  'discarding unexpected <body>',
             \  '<script> escaping malformed URI reference',
-            \  '</head> isn''t allowed in <body> elements'
+            \  '</head> isn''t allowed in <body> elements',
+            \  '<a> escaping malformed URI reference',
             \ ]
 """""""""""""""""""""""""""""""""""""""""
 
@@ -614,7 +615,7 @@ Plugin 'tell-k/vim-autopep8'
 Plugin 'elzr/vim-json'
 Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'dyng/ctrlsf.vim'
-Plugin 'gitfree/vim-virtualenv'
+Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'easymotion/vim-easymotion'
