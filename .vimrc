@@ -8,10 +8,8 @@ else
   let g:iswindows=0
 endif  
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "F1-F10快捷键绑定
-"<F3>在svn提交当前文件夹，并可添加注释
 "<F4>在python文件添加头部
 "<F5>单个文件编译并执行
 "<F6>make,ctrl+F6 清理make
@@ -22,9 +20,6 @@ endif
 "<F11>添加helptags帮助文档
 "<F12>generate ctags for current folder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"<F3>在svn提交当前文件夹，并可添加注释
-map <F3> :w<CR>:!svn ci % -m ""<LEFT>
-
 "<F4> 添加头部作者等信息
 nmap <F4> :call SmartAddHeader()<cr>
 function! SmartAddHeader()
@@ -70,8 +65,6 @@ function! Do_OneFileMake()
   elseif &filetype=="python"
     execute "!python %"
     return
-"elseif &filetype=="cs"
-"set makeprg=csc\ \/nologo\ \/out:%<.exe\ %
   endif
   if(g:iswindows==1)
     let outfilename=substitute(sourcefileename,'\(\.[^.]*\)$','.exe','g')
@@ -615,7 +608,7 @@ Plugin 'tell-k/vim-autopep8'
 Plugin 'elzr/vim-json'
 Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'dyng/ctrlsf.vim'
-Plugin 'jmcantrell/vim-virtualenv'
+"Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'easymotion/vim-easymotion'
