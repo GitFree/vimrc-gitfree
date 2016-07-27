@@ -541,11 +541,6 @@ let g:bookmark_annotation_sign = '##'
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
-""vim-virtualenv
-let g:virtualenv_auto_activate = 1
-"""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""
 ""nerdtree
 map <C-n> :NERDTreeToggle<CR>
 " close vim if the only window left open is a NERDTree
@@ -608,7 +603,6 @@ Plugin 'tell-k/vim-autopep8'
 Plugin 'elzr/vim-json'
 Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'dyng/ctrlsf.vim'
-"Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'easymotion/vim-easymotion'
