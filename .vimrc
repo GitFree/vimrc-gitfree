@@ -205,7 +205,10 @@ set viminfo+=!
 " 带有如下符号的单词不要被换行分割
 set iskeyword+=_,$,@,%,#,-
 
-set colorcolumn=100
+set colorcolumn=120
+
+" 鼠标只能在可编辑区域内选择，不会选中左侧行数
+set mouse+=a
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文件设置
@@ -237,7 +240,6 @@ set backspace=2
 set whichwrap+=<,>,h,l
 
 " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
-"set mouse=a
 set selection=inclusive
 set selectmode=key
 
