@@ -588,6 +588,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'mattn/emmet-vim'
+Plugin 'Yggdroot/indentLine'
 
 " vim-scripts repos on vim.org
 Plugin 'L9'
