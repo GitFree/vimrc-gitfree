@@ -380,36 +380,11 @@ let g:user_emmet_mode='a'
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
-""Neosnippet自动补全
-"Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-"Tab to select the next field to fill in the snippet.
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" -----------start use Honza's Snippets-----------
-" Enable snipMate compatibility feature.
-let g:neosnippet#disable_runtime_snippets = {'_': 1}
-let g:neosnippet#enable_snipmate_compatibility = 1
-if g:iswindows==1
-    let g:neosnippet#snippets_directory="$VIM/vimfiles/bundle/vim-snippets/snippets"
-else
-    let g:neosnippet#snippets_directory="$HOME/.vim/vimfiles/bundle/vim-snippets/snippets"
-endif
-" -----------end use Honza's Snippets-----------
-
-let g:snips_author='GitFree'
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-let g:vimrc_author='GitFree'
-let g:vimrc_email='pengzhao.lh@gmail.com'
+""UltiSnips snippet engine
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
@@ -593,8 +568,10 @@ Plugin 'suan/vim-instant-markdown'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/neosnippet'
+"Plugin 'Shougo/neosnippet'
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'justinj/vim-react-snippets'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'hynek/vim-python-pep8-indent'
