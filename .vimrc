@@ -143,17 +143,6 @@ map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Other shortcuts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" show buffers
-nmap zl :buffers<CR>
-
-"ctrl+s save
-map <c-s> :w<cr>
-imap <c-s> <Esc>:w<cr>a
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 外观设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " startup windows size
@@ -208,6 +197,29 @@ set iskeyword+=_,$,@,%,#,-
 set colorcolumn=120
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" buffer设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 切换buffer时不提示未保存的修改
+set hidden
+
+" 当buffer被丢弃的时删除它
+set bufhidden=hide
+
+" 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
+set selection=inclusive
+set selectmode=key
+
+" 光标移动到buffer的顶部和底部时保持3行距离
+set scrolloff=3
+
+"""""""""""""""""""""""""""""""""""""""""
+""Fuzzyfinder
+nmap zf :FufFile<CR>
+nmap zb :FufBuffer<CR>
+"""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " filetype
@@ -220,8 +232,6 @@ set fileformat=unix
 set nobackup
 set nowritebackup
 set noswapfile
-" 当buffer被丢弃的时删除它
-set bufhidden=hide
 
 " 增强模式中的命令行自动完成操作
 set wildmenu
@@ -235,10 +245,6 @@ set backspace=2
 
 " 允许backspace和光标键跨越行边界
 set whichwrap+=<,>,h,l
-
-" 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
-set selection=inclusive
-set selectmode=key
 
 " 启动的时候不显示那个援助索马里儿童的提示
 set shortmess=atI
@@ -271,9 +277,6 @@ set incsearch
 
 " 输入:set list命令是应该显示些啥？
 set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
-
-" 光标移动到buffer的顶部和底部时保持3行距离
-set scrolloff=3
 
 " 不要闪烁
 set novisualbell
@@ -489,12 +492,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 " configure the formatting of filenames (see |filename-modifiers|)
 let g:airline#extensions#tabline#fnamemod = ':p:t'
-"""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""
-""Fuzzyfinder
-nmap zf :FufFile<CR>
-nmap zb :FufBuffer<CR>
 """""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""
