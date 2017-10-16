@@ -24,12 +24,12 @@ git clone https://github.com/VundleVim/Vundle.vim.git vundle
 双击Monaco for Powerline.otf安装字体   
 设置iterm字体为 Monaco for Powerline  
 2. jedi-vim依赖  
-pip install jedi  
+sudo pip install jedi  
 3. syntastic依赖  
-pip install flake8  
+sudo pip install flake8  
 brew install tidy-html5  
 4. vim-autopep8依赖  
-pip install autopep8  
+sudo pip install autopep8  
 5. editorconfig-vim  
 brew install editorconfig  
 6. vim-instant-markdown  
