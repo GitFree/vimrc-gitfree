@@ -32,5 +32,6 @@ brew install tidy-html5
 sudo pip install autopep8  
 5. editorconfig-vim  
 brew install editorconfig  
-6. vim-instant-markdown  
+6. vim-instant-markdown    
+brew install npm  
 npm -g install instant-markdown-d
