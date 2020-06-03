@@ -12,8 +12,6 @@ endif
 "F1-F10快捷键绑定
 "<F4>在python文件添加头部
 "<F5>单个文件编译并执行
-"<F6>make,ctrl+F6 清理make
-"<F7>gdb调试
 "<F8>自动使用autopep8格式化当前文件
 "<F9> toggle location list
 "<F10>无须重启即使vimrc配置生效
@@ -100,24 +98,6 @@ function! Do_OneFileMake()
   endif
   exec "cw"
 endfunction
-"进行make的设置
-map <F6> :call Do_make()<CR>
-map <c-F6> :silent make clean<CR>
-function! Do_make()
-  set makeprg=make
-  execute "silent make"
-  execute "copen"
-endfunction  
-
-"<F7>  gdb调试
-map <F7> :call Debug()<CR>
-func!  Debug()
-exec "w"
-"把调试信息加到可执行文件中,
-"如果没有-g，你将看不见程序的函数名、变量名，所代替的全是运行时的内存地址
-exec "!gcc -g % -o %<"
-exec "!gdb %<"
-endfunc
 
 "<F8>  vim-autopep8
 autocmd FileType python map <buffer> <F8> :call Autopep8()<CR><C-l><CR>
