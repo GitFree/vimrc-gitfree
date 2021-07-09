@@ -287,7 +287,7 @@ set smarttab
 set wrap
 
 " vimdiff忽略行尾的空格(自然包括全空格的行)
-set diffopt+=iwhite
+"set diffopt+=iwhite
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocommands
@@ -526,13 +526,9 @@ let g:jsx_ext_required = 0
 set nocompatible      " be iMproved
 filetype off          " required!
 
-if g:iswindows==1
-    set rtp+=$VIM/vimfiles/bundle/vundle/
-    call vundle#rc('$VIM/vimfiles/bundle/')
-else
-    set rtp+=$HOME/.vim/vimfiles/bundle/vundle/
-    call vundle#rc('$HOME/.vim/vimfiles/bundle/')
-endif
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle required! 
 Plugin 'gmarik/vundle'
